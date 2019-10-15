@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>SB_405 Index Page</title>
+    <title>Login Page</title>
 
     <!-- Link to the bootstrap stylesheet:  insert this just before the </head> tag  (this version fits on a page) -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -11,10 +11,26 @@
     <!-- END Link to the bootstrap stylesheet -->
 </head>
 <body>
-    <div class="container">
-        <h2>Insecure Page</h2>
-        <a href="/secure">Secure Page</a>
-
+    <div  class="container">
+        <h1>Login Page</h1>
+    
+        <div th:if="${param.error}">
+            Invalid username or password
+        </div>
+        <div th:if="${param.logout}">
+            You have been logged out
+        </div>
+        <form th:action="@{/login}" method="post">
+            <div>
+                <label>User name: <input type="text" name="username" /></label>
+            </div>
+            <div>
+                <label>Password: <input type="password" name="password" /></label>
+            </div>
+            <div>
+                <input type="submit" value="Sign in" />
+            </div>
+        </form>
     </div>
 
     <!-- JS code: insert this just before the </body> tag  (this version fits on a page) -->
